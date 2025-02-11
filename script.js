@@ -31,35 +31,31 @@ setInterval(updateCountdown, 1000);
 // Run once at load
 updateCountdown();
 
-/*****************************************************
-  ADD & REMOVE GUEST FIELDS
-*****************************************************/
+/******************************************************************************
+  2. ADD & REMOVE GUEST FIELDS
+******************************************************************************/
 const addGuestBtn = document.getElementById("addGuestBtn");
 const guestsContainer = document.getElementById("guests");
 let guestCount = 1;
 
-// Helper function to attach remove event to an "×" icon
+// Attach remove event to an "×" icon
 function attachRemoveEvent(removeIcon, guestDiv) {
   removeIcon.addEventListener("click", () => {
-    // If you want to prevent removing the last guest, 
-    // check how many .removable blocks remain:
-    // if (guestsContainer.querySelectorAll('.removable').length > 1) {
-    guestsContainer.removeChild(guestDiv);
-    // }
+    // Only remove if there's more than one guest form present
+    if (guestsContainer.querySelectorAll(".removable").length > 1) {
+      guestsContainer.removeChild(guestDiv);
+    }
   });
 }
 
-// 1) Attach remove event to the FIRST guest block
+// First guest block
 const firstGuestDiv = guestsContainer.querySelector(".form-group.removable");
 if (firstGuestDiv) {
   const firstRemoveIcon = firstGuestDiv.querySelector(".remove-guest-icon");
   attachRemoveEvent(firstRemoveIcon, firstGuestDiv);
-  if (guestsContainer.querySelectorAll('.removable').length > 1) {
-    guestsContainer.removeChild(guestDiv);
-  }  
 }
 
-// 2) On clicking "Add Another Guest"
+// On "Add Another Guest" click
 addGuestBtn.addEventListener("click", () => {
   guestCount++;
 
@@ -82,43 +78,31 @@ addGuestBtn.addEventListener("click", () => {
     <span class="remove-guest-icon">&times;</span>
   `;
 
-  // Add new guest block to container
+  // Add the new guest block
   guestsContainer.appendChild(guestDiv);
 
-  // Attach remove event to the new "×" icon
+  // Attach remove event
   const removeIcon = guestDiv.querySelector(".remove-guest-icon");
   attachRemoveEvent(removeIcon, guestDiv);
 });
 
-function attachRemoveEvent(removeBtn, guestDiv) {
-  removeBtn.addEventListener("click", () => {
-    // Only remove if there's more than one form-group left
-    if (guestsContainer.querySelectorAll(".form-group").length > 1) {
-      guestsContainer.removeChild(guestDiv);
-    }
-  });
-}
-
-
-
 /******************************************************************************
   3. PERSONALIZED GUEST NAME LOGIC
-     Read '?guest=NAME' from the URL & update the hero title
+     Read '?guest=NAME' from the URL & put the message in a separate element
 ******************************************************************************/
 (function personalizeGuestName() {
   const urlParams = new URLSearchParams(window.location.search);
   const guestName = urlParams.get("guest");
 
   if (guestName) {
-    const heroTitle = document.getElementById("heroTitle");
+    const personalMsgElem = document.getElementById("personalizedMessage");
     // Example: "Sheilah & Rodney, you're invited to Troy & Bec's Wedding!"
-    heroTitle.textContent = `${guestName}, you're invited to Troy & Rebecca's Wedding!`;
+    personalMsgElem.textContent = `${guestName}, you're invited to Troy & Bec's Wedding!`;
   }
 })();
 
 /******************************************************************************
   4. FAQ COLLAPSIBLE LOGIC
-     Toggle open/close for each FAQ item
 ******************************************************************************/
 document.querySelectorAll(".faq-question").forEach((button) => {
   button.addEventListener("click", () => {

@@ -1,7 +1,7 @@
-/* 
+/*
   ------------------------------------------------------------
   COLOR SCHEME
-  #FFFFF8 (Ivory Crepe) as main background
+  #FFFFF8 (Ivory Crepe) for main background
   #FCB2A9 (Spring Pony) for main accents
   #B0D5C0 (English Pear) for other accents/button backgrounds
   #989CA0 (Nimble) for text
@@ -37,7 +37,7 @@ body {
 .hero {
   position: relative;
   width: 100%;
-  min-height: 900px;
+  min-height: 900px; /* large hero for desktop */
   background-image: url('Images/hero.jpg');
   background-size: cover;
   background-position: center;
@@ -48,15 +48,13 @@ body {
   text-align: center;
 }
 
-/* Make hero smaller on mobile */
 @media (max-width: 768px) {
   .hero {
-    min-height: 500px;
+    min-height: 500px; /* smaller for mobile */
   }
 }
 
-
-/* Optional dark overlay to make text stand out more */
+/* Overlay to darken the background image slightly */
 .hero-overlay {
   position: absolute;
   top: 0;
@@ -66,13 +64,16 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
 }
 
-/* Hero Content */
+/* Hero Content Container */
 .hero-content {
-  position: relative; /* ensures content sits on top of .hero-overlay */
+  position: relative; /* ensures content sits on top of the overlay */
   background-color: rgba(255, 255, 248, 0.8);
   padding: 2rem;
   border-radius: 8px;
   animation: fadeIn 1s ease-in-out;
+  /* Limit width so it doesn't overflow on small screens */
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 /* Hero Title */
@@ -80,8 +81,15 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 3rem;
   color: #FCB2A9; /* Spring Pony */
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   line-height: 1.2;
+}
+
+/* Personalized Message (optional) */
+.personal-msg {
+  font-size: 1.25rem;
+  color: #989CA0;
+  margin-bottom: 1.5rem;
 }
 
 /* Countdown Container */
@@ -90,6 +98,9 @@ body {
   gap: 1rem;
   justify-content: center;
   font-size: 1.2rem;
+  flex-wrap: wrap; /* allow boxes to wrap on smaller screens */
+  max-width: 100%;
+  margin: 0 auto;
 }
 
 /* Individual Time Box */
@@ -106,6 +117,16 @@ body {
   display: block;
   font-size: 2rem;
   font-weight: bold;
+}
+
+/* Responsive adjustments for the countdown text size */
+@media (max-width: 480px) {
+  .time-box span {
+    font-size: 1.5rem;
+  }
+  #countdown {
+    font-size: 1rem;
+  }
 }
 
 /* ------------------------------------------------------------
@@ -136,9 +157,7 @@ section h2 {
 }
 
 /* ------------------------------------------------------------
-   SPLIT SECTIONS
-   - .split-section: container that can hold an image on one side & text on the other
-   - .reverse class can flip the image/text sides
+   SPLIT SECTIONS (image on one side, text on the other)
 ------------------------------------------------------------ */
 .split-section {
   padding: 3rem 0;
@@ -148,34 +167,37 @@ section h2 {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 2rem;
+  gap: 40px;
 }
 
 .split-container.reverse {
   flex-direction: row-reverse;
 }
 
-.image-side, .text-side {
+.image-side,
+.text-side {
   flex: 1;
-  min-width: 300px; /* helps for mobile responsiveness */
+  min-width: 300px;
 }
 
+/* Ensure images fit and have rounded corners */
 .split-section img {
   width: 100%;
   height: auto;
   border-radius: 8px;
 }
 
+/* For the text side’s heading to be left-aligned (unless changed below) */
 .text-side h2 {
   text-align: left;
 }
 
-.text-side p, .text-side ul {
+.text-side p,
+.text-side ul {
   max-width: 600px;
   margin-top: 1rem;
 }
 
-/* UL for bullet points */
 .text-side ul {
   list-style: disc;
   padding-left: 1.5rem;
@@ -186,6 +208,11 @@ section h2 {
 ------------------------------------------------------------ */
 .itinerary {
   padding: 3rem 0;
+}
+
+/* Center-align the text inside the left .text-side for the itinerary specifically */
+.itinerary .text-side {
+  text-align: center;
 }
 
 .timeline {
@@ -252,7 +279,7 @@ section h2 {
    GALLERY SECTION
 ------------------------------------------------------------ */
 .gallery {
-  background-color: #FCB2A911; /* Light overlay of Spring Pony for variety */
+  background-color: #FCB2A911; /* Light overlay */
   padding: 3rem 0;
 }
 
@@ -292,10 +319,10 @@ section h2 {
   gap: 1rem;
 }
 
-/* Form Groups */
 .form-group {
   display: flex;
   flex-direction: column;
+  position: relative; /* for the remove icon positioning */
 }
 
 .form-group label {
@@ -317,6 +344,22 @@ section h2 {
   margin-left: 1rem;
   font-size: 0.9rem;
   color: #555;
+}
+
+/* The "×" icon to remove a guest block */
+.remove-guest-icon {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  font-size: 1.2rem;
+  color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2;
+}
+
+.remove-guest-icon:hover {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 /* Add Guest Button */
@@ -350,7 +393,7 @@ section h2 {
 }
 
 .btn:hover {
-  background-color: #E39A94; /* Slightly darker shade */
+  background-color: #E39A94; /* Slightly darker */
 }
 
 /* ------------------------------------------------------------
@@ -379,14 +422,10 @@ section h2 {
 
 /* ------------------------------------------------------------
    RESPONSIVE DESIGN
-   Make sure everything looks good on mobile
 ------------------------------------------------------------ */
 @media (max-width: 768px) {
   .hero-content h1 {
     font-size: 2rem;
-  }
-  .time-box span {
-    font-size: 1.5rem;
   }
   .itinerary .timeline {
     gap: 1rem;
@@ -397,91 +436,8 @@ section h2 {
   /* For split sections, stack columns on top of each other */
   .split-container {
     flex-direction: column;
-    gap: 1rem;
   }
   .text-side h2 {
     text-align: center;
   }
 }
-.remove-guest-btn {
-  background-color: #e74c3c; /* A red color */
-  color: #fff;
-  margin-left: 1rem; /* space it from the child label */
-  border: none;
-  border-radius: 4px;
-  padding: 0.5rem 0.75rem;
-  cursor: pointer;
-  font: inherit;
-}
-
-.remove-guest-btn:hover {
-  background-color: #c0392b; /* darker red */
-}
-.form-group {
-  position: relative; /* Let us position the "×" absolutely within this group */
-}
-
-/* The stylish "×" icon to remove a guest */
-.remove-guest-icon {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.3);
-  cursor: pointer;
-  z-index: 2;
-  transition: color 0.3s ease;
-}
-
-.remove-guest-icon:hover {
-  color: rgba(0, 0, 0, 0.7);
-}
-/* Ensure split-section layout */
-.split-container {
-  display: flex;
-  align-items: center;
-  gap: 40px; /* Space between text and image */
-}
-
-/* Make text-side take 50% width */
-.text-side {
-  flex: 1;
-}
-
-/* Make image-side take 50% width */
-.image-side {
-  flex: 1;
-  text-align: right;
-}
-
-/* Make sure images fit well */
-.image-side img {
-  width: 100%;
-  max-width: 600px; /* Adjust size */
-  height: auto;
-  border-radius: 10px; /* Optional: rounded corners */
-}
-/* Ensure iframe behaves like images */
-.image-side {
-  display: flex;
-  justify-content: center; /* Center content */
-  align-items: center;
-}
-
-/* Wrapper for iframe to apply rounded edges */
-.image-side .map-container {
-  width: 100%;
-  max-width: 600px; /* Match image width */
-  height: 400px; /* Match image height */
-  border-radius: 10px; /* Rounded edges */
-  overflow: hidden; /* Ensures the corners stay rounded */
-}
-
-/* The actual iframe */
-.image-side .map-container iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  display: block;
-}
-

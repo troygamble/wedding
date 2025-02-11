@@ -11,7 +11,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!-- Playfair and Open Sans (you can choose other combos) -->
+  <!-- Playfair and Open Sans -->
   <link
     href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@700&display=swap"
     rel="stylesheet"
@@ -23,11 +23,10 @@
   <header class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <!--
-        Personalized hero text is updated in script.js via '?guest=Name' parameter
-        Example: yourdomain.com?guest=Sheilah%20and%20Rodney
-      -->
+      <!-- Main hero title ALWAYS "Troy & Bec" -->
       <h1 id="heroTitle">Troy &amp; Bec</h1>
+      <!-- This new element will display personalized message if using ?guest=... -->
+      <h2 id="personalizedMessage" class="personal-msg"></h2>
 
       <!-- COUNTDOWN -->
       <div id="countdown">
@@ -56,7 +55,7 @@
     <div class="container">
       <h2>Troy & Bec's Wedding</h2>
       <p>
-        We are so excited to invite you to our wedding celebration in Nusa Dua
+        We are so excited to invite you to our wedding celebration in Nusa Dua.
         Get ready for sun, sand, love, and laughter. 
       </p>
       <p>
@@ -70,10 +69,9 @@
   <section class="split-section" id="details">
     <div class="container split-container">
       <div class="image-side">
-        <!-- RECOMMENDED SIZE: 600x400 or 1200x800 for best results -->
         <img
           src="Images/3.jpg"
-          alt="Details Placeholder"
+          alt="Wedding Venue"
         />
       </div>
       <div class="text-side">
@@ -90,160 +88,158 @@
     </div>
   </section>
 
-<!-- ITINERARY SECTION (alternating background) -->
-<section class="itinerary section-alt" id="itinerary">
-  <div class="container split-container">
-    
-    <!-- Left Side - Text (Itinerary) -->
-    <div class="text-side">
-      <h2>Itinerary</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>8th Sept</h3>
-          <p>Arrivals &amp; Check-In. Get settled, relax, and enjoy Bali!</p>
-        </div>
-        <div class="timeline-item">
-          <h3>9th Sept</h3>
-          <p>Welcome Cocktail (6:00 PM) - Poolside at Merusaka.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>10th Sept</h3>
-          <p>The Big Day! Ceremony at 4:00 PM, followed by dinner &amp; dancing.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>11th Sept</h3>
-          <p>Beach Day! We’ll be hosting an informal hangout by the beach.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>12th - 14th Sept</h3>
-          <p>Free days / Explore Bali / Day Trips.</p>
-        </div>
-        <div class="timeline-item">
-          <h3>15th Sept</h3>
-          <p>Farewell Brunch &amp; Departures.</p>
+  <!-- ITINERARY SECTION (alternating background) -->
+  <section class="itinerary section-alt" id="itinerary">
+    <div class="container split-container">
+      
+      <!-- Left Side - Text (Itinerary) -->
+      <div class="text-side">
+        <h2>Itinerary</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <h3>8th Sept</h3>
+            <p>Arrivals &amp; Check-In. Get settled, relax, and enjoy Bali!</p>
+          </div>
+          <div class="timeline-item">
+            <h3>9th Sept</h3>
+            <p>Pre-wedding Cocktail at 6:00 PM at the bar.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>10th Sept</h3>
+            <p>The Big Day! Wedding starts at 4:00 PM, followed by reception, cocktail hour, cake, drinks until 10pm, and continuing at the hotel bar.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>11th Sept</h3>
+            <p>Beach Day! We’ll be hosting an informal hangout by the beach.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>12th - 14th Sept</h3>
+            <p>Free days / Explore Bali / Day Trips.</p>
+          </div>
+          <div class="timeline-item">
+            <h3>15th Sept</h3>
+            <p>Farewell Brunch &amp; Departures.</p>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- Right Side - Image -->
-    <div class="image-side">
-      <img src="Images/m1.jpg" alt="Itinerary Image">
-    </div>
-
-  </div>
-</section>
-
-<!-- SPLIT SECTION for Getting There: Text on Left, Map on Right -->
-<section class="split-section" id="gettingThere">
-  <div class="container split-container reverse">
-    
-    <!-- Text Side -->
-    <div class="text-side">
-      <h2>Getting There</h2>
-      <p>
-        You'll arrive at <strong>Ngurah Rai International Airport (DPS)</strong> in Denpasar, Bali.
-        From there, it's a short and scenic journey to the wedding venue.
-      </p>
-      <ul>
-        <li><strong>Distance:</strong> Merusaka Nusa Dua is about <strong>14 km</strong> from the airport.</li>
-        <li><strong>Travel Time:</strong> Around <strong>25-30 minutes</strong> by car, depending on traffic.</li>
-      </ul>
-      <p><strong>Transport Options:</strong></p>
-      <ul>
-        <li><strong>Taxi / Ride-Share:</strong> Use a <em>Bluebird taxi</em> or book a ride via <em>Grab/Gojek</em> (IDR 150,000 – 250,000 / $20 AUD).</li>
-        <li><strong>Hotel Transfer:</strong> Contact Merusaka for a private pickup service.</li>
-        <li><strong>Private Driver:</strong> Great if you plan to explore Bali. Costs ~IDR 500,000 ($70 AUD) per day.</li>
-      </ul>
-      <p>Once you arrive, check in, relax, and get ready for an unforgettable celebration!</p>
-    </div>
-
-    <!-- Google Maps Iframe Side -->
-    <div class="image-side">
-      <div class="map-container">
-        <iframe 
-          src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ" 
-          allowfullscreen 
-          loading="lazy">
-        </iframe>
+      <!-- Right Side - Image -->
+      <div class="image-side">
+        <img src="Images/m1.jpg" alt="Itinerary Image">
       </div>
+
     </div>
+  </section>
 
-  </div>
-</section>
-
-
-<!-- ACCOMMODATION SECTION -->
-<section class="split-section section-alt" id="accommodation">
-  <div class="container split-container reverse"> <!-- Added 'reverse' class -->
-
-    <!-- Google Maps Iframe Side -->
-    <div class="image-side">
-      <div class="map-container">
-        <iframe 
-          src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ" 
-          allowfullscreen 
-          loading="lazy">
-        </iframe>
-      </div>
-    </div>
-
-    <!-- Text Side -->
-    <div class="text-side">
-      <h2>Accommodation</h2>
-      <p>
-        You can book directly with the hotel or choose any other nearby location.
-        To get the discounted rate at Merusaka, use the code
-        <strong>WEDTROYREBECCA</strong> or mention our wedding when booking.
-      </p>
-      <p>
-        <strong>Merusaka Hotel Bali</strong><br />
-        +62 123 456 789<br />
-        <a href="https://www.merusaka.com/" target="_blank" rel="noopener">www.merusaka.com</a>
-      </p>
-    </div>
-  </div>
-</section>
-
-<!-- FAQ SECTION -->
-<section class="faq" id="faq">
-  <div class="container">
-    <h2>FAQ</h2>
-    <div class="faq-item">
-      <button class="faq-question">What is the currency in Bali?</button>
-      <div class="faq-answer">
+  <!-- SPLIT SECTION for Getting There: Text on Left, Map on Right -->
+  <section class="split-section" id="gettingThere">
+    <div class="container split-container reverse">
+      
+      <!-- Text Side -->
+      <div class="text-side">
+        <h2>Getting There</h2>
         <p>
-          The local currency is the Indonesian Rupiah (IDR). You can exchange currency at the airport or use ATMs.
+          You'll arrive at <strong>Ngurah Rai International Airport (DPS)</strong> in Denpasar, Bali.
+          From there, it's a short and scenic journey to the wedding venue.
+        </p>
+        <ul>
+          <li><strong>Distance:</strong> Merusaka Nusa Dua is about <strong>14 km</strong> from the airport.</li>
+          <li><strong>Travel Time:</strong> Around <strong>25-30 minutes</strong> by car, depending on traffic.</li>
+        </ul>
+        <p><strong>Transport Options:</strong></p>
+        <ul>
+          <li><strong>Taxi / Ride-Share:</strong> Use a <em>Bluebird taxi</em> or book a ride via <em>Grab/Gojek</em> (IDR 150,000 – 250,000 / $20 AUD).</li>
+          <li><strong>Hotel Transfer:</strong> Contact Merusaka for a private pickup service.</li>
+          <li><strong>Private Driver:</strong> Great if you plan to explore Bali. Costs ~IDR 500,000 ($70 AUD) per day.</li>
+        </ul>
+        <p>Once you arrive, check in, relax, and get ready for an unforgettable celebration!</p>
+      </div>
+
+      <!-- Google Maps Iframe Side -->
+      <div class="image-side">
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ" 
+            allowfullscreen 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ACCOMMODATION SECTION -->
+  <section class="split-section section-alt" id="accommodation">
+    <div class="container split-container reverse">
+      <!-- Google Maps Iframe Side -->
+      <div class="image-side">
+        <div class="map-container">
+          <iframe 
+            src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ" 
+            allowfullscreen 
+            loading="lazy">
+          </iframe>
+        </div>
+      </div>
+
+      <!-- Text Side -->
+      <div class="text-side">
+        <h2>Accommodation</h2>
+        <p>
+          You can book directly with the hotel or choose any other nearby location.
+          To get the discounted rate at Merusaka, use the code
+          <strong>WEDTROYREBECCA</strong> or mention our wedding when booking.
+        </p>
+        <p>
+          <strong>Merusaka Hotel Bali</strong><br />
+          +62 123 456 789<br />
+          <a href="https://www.merusaka.com/" target="_blank" rel="noopener">www.merusaka.com</a>
         </p>
       </div>
     </div>
-    <div class="faq-item">
-      <button class="faq-question">Is transportation provided?</button>
-      <div class="faq-answer">
-        <p>
-          Airport transfers are not provided, but taxi or ride-share services (e.g., Grab) are available.
-          Feel free to coordinate with each other for group arrivals.
-        </p>
+  </section>
+
+  <!-- FAQ SECTION -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <button class="faq-question">What is the currency in Bali?</button>
+        <div class="faq-answer">
+          <p>
+            The local currency is the Indonesian Rupiah (IDR). You can exchange currency at the airport or use ATMs.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Is transportation provided?</button>
+        <div class="faq-answer">
+          <p>
+            Airport transfers are not provided, but taxi or ride-share services (e.g., Grab) are available.
+            Feel free to coordinate with each other for group arrivals.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Can I bring children?</button>
+        <div class="faq-answer">
+          <p>
+            Absolutely! Children are welcome. We’ll have some activities for them during the day.
+          </p>
+        </div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-question">Any dietary restrictions or allergies?</button>
+        <div class="faq-answer">
+          <p>
+            If you have special dietary needs, let us know in your RSVP message.
+            We’ll do our best to accommodate.
+          </p>
+        </div>
       </div>
     </div>
-    <div class="faq-item">
-      <button class="faq-question">Can I bring children?</button>
-      <div class="faq-answer">
-        <p>
-          Absolutely! Children are welcome. We’ll have some activities for them during the day.
-        </p>
-      </div>
-    </div>
-    <div class="faq-item">
-      <button class="faq-question">Any dietary restrictions or allergies?</button>
-      <div class="faq-answer">
-        <p>
-          If you have special dietary needs, let us know in your RSVP message.
-          We’ll do our best to accommodate.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- PHOTO GALLERY SECTION -->
   <section class="gallery" id="gallery">
@@ -251,7 +247,6 @@
       <h2>Photo Gallery</h2>
       <p>Some of our favorite moments... and a sneak peek of what's to come!</p>
 
-      <!-- Replace these placeholders with your actual photos or a slider if you wish -->
       <div class="gallery-grid">
         <div class="gallery-item">
           <img src="Images/m1.jpg" alt="Photo 1" />
@@ -269,74 +264,72 @@
     </div>
   </section>
 
-<!-- RSVP SECTION -->
-<section class="rsvp" id="rsvp">
-  <div class="container">
-    <h2>RSVP</h2>
-    <p>Please let us know if you can make it. We look forward to celebrating with you!</p>
+  <!-- RSVP SECTION -->
+  <section class="rsvp" id="rsvp">
+    <div class="container">
+      <h2>RSVP</h2>
+      <p>Please let us know if you can make it. We look forward to celebrating with you!</p>
 
-    <!-- Replace 'xqaedaav' with your Formspree endpoint if different -->
-    <form
-      action="https://formspree.io/f/xqaedaav"
-      method="POST"
-      class="rsvp-form"
-    >
-      <div id="guests">
-        <!-- FIRST GUEST -->
-        <div class="form-group removable">
-          <label for="guest1">Guest Name</label>
+      <!-- Replace 'xqaedaav' with your Formspree endpoint if different -->
+      <form
+        action="https://formspree.io/f/xqaedaav"
+        method="POST"
+        class="rsvp-form"
+      >
+        <div id="guests">
+          <!-- FIRST GUEST -->
+          <div class="form-group removable">
+            <label for="guest1">Guest Name</label>
+            <input
+              type="text"
+              id="guest1"
+              name="guest[]"
+              placeholder="Guest Name"
+              required
+            />
+            <label class="child-label">
+              <input type="checkbox" name="guest1_is_child" value="under10" />
+              Under 10 years old?
+            </label>
+            <!-- 'X' icon to remove this guest -->
+            <span class="remove-guest-icon">&times;</span>
+          </div>
+        </div>
+
+        <!-- Button to add more guests -->
+        <button type="button" id="addGuestBtn" class="add-guest-btn">Add Another Guest</button>
+
+        <!-- CONTACT EMAIL -->
+        <div class="form-group">
+          <label for="email">Contact Email</label>
           <input
-            type="text"
-            id="guest1"
-            name="guest[]"
-            placeholder="Guest Name"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
             required
           />
-          <label class="child-label">
-            <input type="checkbox" name="guest1_is_child" value="under10" />
-            Under 10 years old?
-          </label>
-          <!-- The 'X' icon to remove this guest -->
-          <span class="remove-guest-icon">&times;</span>
         </div>
-      </div>
 
-      <!-- Button to add more guests -->
-      <button type="button" id="addGuestBtn" class="add-guest-btn">Add Another Guest</button>
+        <!-- MESSAGE (optional) -->
+        <div class="form-group">
+          <label for="message">Message (optional)</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder="Any dietary requirements or notes..."
+          ></textarea>
+        </div>
 
-      <!-- CONTACT EMAIL -->
-      <div class="form-group">
-        <label for="email">Contact Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="Enter your email"
-          required
-        />
-      </div>
-
-      <!-- MESSAGE (optional) -->
-      <div class="form-group">
-        <label for="message">Message (optional)</label>
-        <textarea
-          id="message"
-          name="message"
-          placeholder="Any dietary requirements or notes..."
-        ></textarea>
-      </div>
-
-      <!-- SUBMIT -->
-      <button type="submit" class="btn">Send RSVP</button>
-    </form>
-  </div>
-</section>
-
-
+        <!-- SUBMIT -->
+        <button type="submit" class="btn">Send RSVP</button>
+      </form>
+    </div>
+  </section>
 
   <!-- FOOTER -->
   <footer class="footer">
-    <p>&copy; 2025 Troy &amp; Rebecca. All Rights Reserved.</p>
+    <p>&copy; 2025 Troy &amp; Bec. All Rights Reserved.</p>
   </footer>
 
   <!-- JavaScript -->
