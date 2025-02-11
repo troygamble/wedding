@@ -111,7 +111,7 @@ function attachRemoveEvent(removeBtn, guestDiv) {
 
   if (guestName) {
     const heroTitle = document.getElementById("heroTitle");
-    // Example: "Sheilah & Rodney, you're invited to Troy & Rebecca's Wedding!"
+    // Example: "Sheilah & Rodney, you're invited to Troy & Bec's Wedding!"
     heroTitle.textContent = `${guestName}, you're invited to Troy & Rebecca's Wedding!`;
   }
 })();
