@@ -461,3 +461,11 @@ section h2 {
   height: auto;
   border-radius: 10px; /* Optional: rounded corners */
 }
+/* Style the Google Maps iframe to match image styling */
+.map-iframe {
+  width: 100%;
+  max-width: 600px; /* Match the images */
+  height: 400px; /* Keep height consistent */
+  border-radius: 10px; /* Optional: rounded corners to match images */
+  border: none;
+}
