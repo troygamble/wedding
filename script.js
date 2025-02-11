@@ -93,13 +93,12 @@ addGuestBtn.addEventListener("click", () => {
 (function personalizeGuestName() {
   const urlParams = new URLSearchParams(window.location.search);
   const guestName = urlParams.get("guest");
-
   if (guestName) {
     const personalMsgElem = document.getElementById("personalizedMessage");
-    // Example: "Sheilah & Rodney, you're invited to Troy & Bec's Wedding!"
     personalMsgElem.textContent = `${guestName}, you're invited to Troy & Bec's Wedding!`;
   }
 })();
+
 
 /******************************************************************************
   4. FAQ COLLAPSIBLE LOGIC
