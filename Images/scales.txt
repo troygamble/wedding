@@ -1,0 +1,2 @@
+Recommended hero image size: 1600 x 900 or any 16:9 ratio.
+For split sections, 1200 x 800 or around that ratio works well.
