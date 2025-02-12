@@ -292,7 +292,8 @@ section.itinerary .text-side h2 {
 .faq-question:hover,
 .faq-question:focus {
   color: #E39A94;
-  outline: 2px solid #FCB2A9;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
 }
 
 .faq-answer {
@@ -378,7 +379,8 @@ section.itinerary .text-side h2 {
 
 .form-group input:focus,
 .form-group textarea:focus {
-  outline: 2px solid #FCB2A9;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
 }
 
 /* Child Label Inline (Updated) */
@@ -423,7 +425,8 @@ label.child-label {
 .add-guest-btn:hover,
 .add-guest-btn:focus {
   background-color: #94BAA7; /* Darker shade of English Pear */
-  outline: 2px solid #FCB2A9;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
 }
 
 /* Submit Button */
@@ -440,7 +443,8 @@ label.child-label {
 .btn:hover,
 .btn:focus {
   background-color: #E39A94; /* Slightly darker shade for hover */
-  outline: 2px solid #FCB2A9;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
 }
 
 /* ------------------------------------------------------------
