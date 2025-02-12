@@ -293,7 +293,7 @@ section.itinerary .text-side h2 {
 .faq-question:focus {
   color: #E39A94;
   outline: none;
-  box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
+  /*box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
 }
 
 .faq-answer {
