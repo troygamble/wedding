@@ -297,7 +297,7 @@ section.itinerary .text-side h2 {
 }
 
 .faq-answer {
-  max-height: 0 !important;
+  max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
   font-size: 0.95rem;
