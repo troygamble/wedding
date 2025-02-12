@@ -293,17 +293,18 @@ section.itinerary .text-side h2 {
 .faq-question:focus {
   color: #E39A94;
   outline: none;
-  /*box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
+  /*box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);*/
 }
 
 .faq-answer {
-  max-height: 0;
+  max-height: 0 !important;
   overflow: hidden;
   transition: max-height 0.3s ease;
   font-size: 0.95rem;
   color: #989CA0;
   margin-bottom: 1rem;
 }
+
 
 .faq-answer p {
   padding: 0 0 1rem 0;

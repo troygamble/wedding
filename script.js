@@ -105,7 +105,10 @@ addGuestBtn.addEventListener("click", () => {
   4. FAQ COLLAPSIBLE LOGIC (Dynamic max-height & ARIA attributes)
 ******************************************************************************/
 document.querySelectorAll(".faq-question").forEach((button) => {
-  button.addEventListener("click", () => {
+  button.addEventListener("click", (event) => {
+    // Prevent any default behavior that might be causing auto-expansion
+    event.preventDefault();
+
     // Toggle the aria-expanded attribute
     const isExpanded = button.getAttribute("aria-expanded") === "true";
     button.setAttribute("aria-expanded", !isExpanded);
@@ -113,9 +116,9 @@ document.querySelectorAll(".faq-question").forEach((button) => {
     // Get the corresponding answer element (assumed to be the next sibling)
     const answer = button.nextElementSibling;
 
-    if (answer.style.maxHeight) {
+    if (answer.style.maxHeight && answer.style.maxHeight !== "0px") {
       // Collapse the answer
-      answer.style.maxHeight = null;
+      answer.style.maxHeight = "0px";
     } else {
       // Expand the answer: set maxHeight to its scrollHeight
       answer.style.maxHeight = answer.scrollHeight + "px";
