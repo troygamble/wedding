@@ -234,6 +234,11 @@ section h2 {
   text-align: center;
 }
 
+/* Override for itinerary heading to ensure it's centered */
+.itinerary .text-side h2 {
+  text-align: center;
+}
+
 .timeline {
   display: flex;
   flex-direction: column;
@@ -246,6 +251,8 @@ section h2 {
   color: #FCB2A9;
   margin-bottom: 0.5rem;
 }
+
+
 
 /* ------------------------------------------------------------
    FAQ SECTION
