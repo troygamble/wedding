@@ -462,9 +462,15 @@ label.child-label {
 @media (max-width: 600px) {
   .split-container {
     flex-direction: column;
-    text-align: center;
+    /* text-align: center; */  /* Removed so general text is not centered */
   }
-  .text-side, .image-side {
+  .text-side,
+  .image-side {
     min-width: 100%;
+  }
+  
+  /* This rule keeps the itinerary section's text (including its header) centered */
+  .itinerary .text-side {
+    text-align: center;
   }
 }
