@@ -19,11 +19,11 @@ function updateCountdown() {
   const minutes = Math.floor((distance / (1000 * 60)) % 60);
   const seconds = Math.floor((distance / 1000) % 60);
 
-  // Update the DOM
-  document.getElementById("days").textContent = days;
-  document.getElementById("hours").textContent = hours;
-  document.getElementById("minutes").textContent = minutes;
-  document.getElementById("seconds").textContent = seconds;
+  // Update the DOM with leading zeros if necessary
+  document.getElementById("days").textContent = String(days).padStart(2, '0');
+  document.getElementById("hours").textContent = String(hours).padStart(2, '0');
+  document.getElementById("minutes").textContent = String(minutes).padStart(2, '0');
+  document.getElementById("seconds").textContent = String(seconds).padStart(2, '0');
 }
 
 // Update every second
@@ -102,11 +102,23 @@ addGuestBtn.addEventListener("click", () => {
 })();
 
 /******************************************************************************
-  4. FAQ COLLAPSIBLE LOGIC
+  4. FAQ COLLAPSIBLE LOGIC (Dynamic max-height & ARIA attributes)
 ******************************************************************************/
 document.querySelectorAll(".faq-question").forEach((button) => {
   button.addEventListener("click", () => {
-    const faqItem = button.parentElement;
-    faqItem.classList.toggle("active");
+    // Toggle the aria-expanded attribute
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", !isExpanded);
+
+    // Get the corresponding answer element (assumed to be the next sibling)
+    const answer = button.nextElementSibling;
+
+    if (answer.style.maxHeight) {
+      // Collapse the answer
+      answer.style.maxHeight = null;
+    } else {
+      // Expand the answer: set maxHeight to its scrollHeight
+      answer.style.maxHeight = answer.scrollHeight + "px";
+    }
   });
 });
