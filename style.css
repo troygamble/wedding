@@ -222,18 +222,12 @@ section h2 {
   padding: 3rem 0;
 }
 
-/* 
-   Center the itinerary text-side content.
-   This override comes after the general .text-side h2 rule.
-*/
+/* Center itinerary text-side content */
 .itinerary .text-side {
   text-align: center;
 }
 
-/* 
-   FIX: Ensure the itinerary heading is centered on all devices.
-   Using increased specificity (section.itinerary) to override the general left alignment.
-*/
+/* FIX: Ensure the itinerary heading is centered on all devices */
 section.itinerary .text-side h2 {
   text-align: center;
 }
@@ -304,6 +298,11 @@ section.itinerary .text-side h2 {
 .gallery {
   background-color: #FCB2A911; /* Light overlay */
   padding: 3rem 0;
+}
+
+/* Center the gallery section paragraph text */
+.gallery p {
+  text-align: center;
 }
 
 .gallery-grid {
