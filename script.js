@@ -97,7 +97,7 @@ addGuestBtn.addEventListener("click", () => {
   if (guestName) {
     // #personalizedMessage is separate from #heroTitle
     const personalMsgElem = document.getElementById("personalizedMessage");
-    personalMsgElem.textContent = `${guestName}, you're invited to Troy & Bec's Wedding!`;
+    personalMsgElem.textContent = `${guestName}, you're invited to Troy & Rebecca's Wedding!`;
   }
 })();
 
