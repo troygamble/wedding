@@ -309,6 +309,14 @@ section.itinerary .text-side h2 {
   padding: 0 0 1rem 0;
 }
 
+.faq .faq-question:focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+  -webkit-appearance: none;
+}
+
+
 /* ------------------------------------------------------------
    GALLERY SECTION
 ------------------------------------------------------------ */
