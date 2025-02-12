@@ -300,8 +300,8 @@ section.itinerary .text-side h2 {
   padding: 3rem 0;
 }
 
-/* Center the gallery section paragraph text */
-.gallery p {
+/* Center the gallery section paragraph text with increased specificity */
+section.gallery > .container > p {
   text-align: center;
 }
 
@@ -360,12 +360,13 @@ section.itinerary .text-side h2 {
   font: inherit;
 }
 
-/* Child Label Inline */
+/* Child Label Inline (Updated) */
 .child-label {
   display: inline-block;
   margin-left: 1rem;
+  margin-top: 0.5rem;  /* Extra top margin for better spacing */
   font-size: 0.9rem;
-  color: #555;
+  color: #989CA0;  /* Matches the grey of other form labels */
 }
 
 /* "×" icon to remove a guest block */
