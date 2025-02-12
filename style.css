@@ -1,10 +1,10 @@
 /*
   ------------------------------------------------------------
   COLOR SCHEME
-  #FFFFF8 (Ivory Crepe) for main background
-  #FCB2A9 (Spring Pony) for main accents
-  #B0D5C0 (English Pear) for other accents/button backgrounds
-  #989CA0 (Nimble) for text
+    #FFFFF8 (Ivory Crepe) for main background
+    #FCB2A9 (Spring Pony) for main accents
+    #B0D5C0 (English Pear) for other accents/button backgrounds
+    #989CA0 (Nimble) for text
   ------------------------------------------------------------
 */
 
@@ -71,7 +71,6 @@ body {
   padding: 2rem;
   border-radius: 8px;
   animation: fadeIn 1s ease-in-out;
-  /* Limit width so it doesn't overflow on small screens */
   max-width: 600px;
   margin: 0 auto;
 }
@@ -90,44 +89,37 @@ body {
   font-size: 1.25rem;
   color: #989CA0;
   margin-bottom: 1.5rem;
-  /* center by default, since hero-content is text-align:center */
 }
 
 /* Countdown Container */
 #countdown {
   display: flex;
-  gap: 0.6rem; /* slightly smaller gap so it’s less likely to wrap on small screens */
+  gap: 0.6rem; /* smaller gap to avoid wrapping on small screens */
   justify-content: center;
   font-size: 1.1rem;
   max-width: 100%;
   margin: 0 auto;
-  /* remove flex-wrap if you want all in one row no matter what
-     but if screen is too small, it will overflow
-  */
-  flex-wrap: nowrap; 
+  flex-wrap: nowrap;
 }
 
-/* TIME-BOX */
+/* TIME-BOX (for days, hours, minutes, seconds) */
 .time-box {
   background-color: #B0D5C0; /* English Pear */
   padding: 0.8rem;
   border-radius: 8px;
-  min-width: 50px; /* smaller so it fits narrower screens */
+  min-width: 50px;
   color: #ffffff;
   text-align: center;
 }
 
 .time-box span {
   display: block;
-  font-size: 1.8rem; /* slightly smaller for narrower screens */
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
-/* If you truly never want to wrap, you can also reduce p text or hide it on smallest screens, 
-   or rely on user pinch-zoom on extremely small widths. */
-
 /* ------------------------------------------------------------
-   SECTION HEADINGS
+   SECTION HEADINGS & ALTERNATE BACKGROUNDS
 ------------------------------------------------------------ */
 section h2 {
   font-family: 'Playfair Display', serif;
@@ -137,7 +129,6 @@ section h2 {
   text-align: center;
 }
 
-/* Alternate Section Background */
 .section-alt {
   background-color: #FCB2A911; /* A subtle tinted background */
 }
@@ -154,7 +145,7 @@ section h2 {
 }
 
 /* ------------------------------------------------------------
-   SPLIT SECTIONS
+   SPLIT SECTIONS (Used for sections with image/text side-by-side)
 ------------------------------------------------------------ */
 .split-section {
   padding: 3rem 0;
@@ -177,21 +168,25 @@ section h2 {
   min-width: 300px;
 }
 
-/* Make sure the images have consistent rounding & sizing */
+/* Consistent styling for images */
 .image-side img {
   width: 100%;
   max-width: 600px;
   height: auto;
   border-radius: 10px;
   display: block;
-  margin: 0 auto; /* center the image block if narrower */
+  margin: 0 auto;
 }
 
-/* For the text side’s heading default to left, but we override in some sections if needed */
+/* 
+   Default alignment for headings in text-side of split sections.
+   (Most sections use left alignment, except the itinerary section.)
+*/
 .text-side h2 {
   text-align: left;
 }
 
+/* Text side paragraph and list styling */
 .text-side p,
 .text-side ul {
   max-width: 600px;
@@ -203,17 +198,16 @@ section h2 {
   padding-left: 1.5rem;
 }
 
-/* Map container rounding */
+/* Map container styling */
 .map-container {
   width: 100%;
-  max-width: 600px;   /* same max-width as your images */
-  height: 400px;      /* fixed height to match your 600×400 ratio */
-  border-radius: 10px; 
-  overflow: hidden;   /* ensures the iframe corners are clipped */
-  margin: 0 auto;     /* center it horizontally if it's smaller than 100% */
+  max-width: 600px;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
-/* The actual iframe */
 .image-side .map-container iframe {
   width: 100%;
   height: 100%;
@@ -221,21 +215,26 @@ section h2 {
   display: block;
 }
 
-
 /* ------------------------------------------------------------
-   ITINERARY / TIMELINE
+   ITINERARY / TIMELINE SECTION
 ------------------------------------------------------------ */
 .itinerary {
   padding: 3rem 0;
 }
 
-/* Specifically center the itinerary text side content, if desired */
+/* 
+   Center the itinerary text-side content.
+   This override comes after the general .text-side h2 rule.
+*/
 .itinerary .text-side {
   text-align: center;
 }
 
-/* Override for itinerary heading to ensure it's centered */
-.itinerary .text-side h2 {
+/* 
+   FIX: Ensure the itinerary heading is centered on all devices.
+   Using increased specificity (section.itinerary) to override the general left alignment.
+*/
+section.itinerary .text-side h2 {
   text-align: center;
 }
 
@@ -251,8 +250,6 @@ section h2 {
   color: #FCB2A9;
   margin-bottom: 0.5rem;
 }
-
-
 
 /* ------------------------------------------------------------
    FAQ SECTION
@@ -372,7 +369,7 @@ section h2 {
   color: #555;
 }
 
-/* The "×" icon to remove a guest block */
+/* "×" icon to remove a guest block */
 .remove-guest-icon {
   position: absolute;
   top: 8px;
@@ -454,17 +451,21 @@ section h2 {
     font-size: 2rem;
   }
 
-  /* Possibly reduce the gap in timeline for smaller screens */
+  /* Reduce gap in timeline on smaller screens */
   .itinerary .timeline {
     gap: 1rem;
   }
+  
   .rsvp-form {
     gap: 1rem;
   }
-  /* For split sections, stack columns on top of each other */
+  
+  /* Stack split section columns vertically */
   .split-container {
     flex-direction: column;
   }
+  
+  /* Center text-side headings on mobile for better readability */
   .text-side h2 {
     text-align: center;
   }
