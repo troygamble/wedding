@@ -289,67 +289,67 @@
   </section>
 
   <!-- RSVP SECTION -->
-  <section class="rsvp" id="rsvp">
-    <div class="container">
-      <h2>RSVP</h2>
-      <p>Please let us know if you can make it. We look forward to celebrating with you!</p>
+<section class="rsvp" id="rsvp">
+  <div class="container">
+    <h2>RSVP</h2>
+    <p>Please let us know if you can make it. We look forward to celebrating with you!</p>
 
-      <!-- Replace 'xqaedaav' with your Formspree endpoint if different -->
-      <form
-        action="https://formspree.io/f/xqaedaav"
-        method="POST"
-        class="rsvp-form"
-      >
-        <div id="guests">
-          <!-- FIRST GUEST -->
-          <div class="form-group removable">
-            <label for="guest1">Guest Name</label>
-            <input
-              type="text"
-              id="guest1"
-              name="guest[]"
-              placeholder="Guest Name"
-              required
-            />
-            <label class="child-label">
-              <input type="checkbox" name="guest1_is_child" value="under10" />
-              Under 10 years old?
-            </label>
-            <!-- 'X' icon to remove this guest -->
-            <span class="remove-guest-icon">&times;</span>
-          </div>
-        </div>
-
-        <!-- Button to add more guests -->
-        <button type="button" id="addGuestBtn" class="add-guest-btn">Add Another Guest</button>
-
-        <!-- CONTACT EMAIL -->
+    <!-- Replace 'xqaedaav' with your Formspree endpoint if different -->
+    <form
+      action="https://formspree.io/f/xqaedaav"
+      method="POST"
+      class="rsvp-form"
+    >
+      <div id="guests">
+        <!-- FIRST GUEST (notice: no "removable" class, no "X" icon) -->
         <div class="form-group">
-          <label for="email">Contact Email</label>
+          <label for="guest1">Guest Name</label>
           <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="Enter your email"
+            type="text"
+            id="guest1"
+            name="guest[]"
+            placeholder="Guest Name"
             required
           />
+          <label class="child-label">
+            <input type="checkbox" name="guest1_is_child" value="under10" />
+            Under 10 years old?
+          </label>
+          <!-- No remove-guest-icon here -->
         </div>
+      </div>
 
-        <!-- MESSAGE (optional) -->
-        <div class="form-group">
-          <label for="message">Message (optional)</label>
-          <textarea
-            id="message"
-            name="message"
-            placeholder="Let us know if you can't make it, any dietary requirments or notes.."
-          ></textarea>
-        </div>
+      <!-- Button to add more guests (these new guests WILL have "X") -->
+      <button type="button" id="addGuestBtn" class="add-guest-btn">Add Another Guest</button>
 
-        <!-- SUBMIT -->
-        <button type="submit" class="btn">Send RSVP</button>
-      </form>
-    </div>
-  </section>
+      <!-- CONTACT EMAIL -->
+      <div class="form-group">
+        <label for="email">Contact Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="Enter your email"
+          required
+        />
+      </div>
+
+      <!-- MESSAGE (optional) -->
+      <div class="form-group">
+        <label for="message">Message (optional)</label>
+        <textarea
+          id="message"
+          name="message"
+          placeholder="Let us know if you can't make it, any dietary requirements or notes.."
+        ></textarea>
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit" class="btn">Send RSVP</button>
+    </form>
+  </div>
+</section>
+
 
   <!-- FOOTER -->
   <footer class="footer">
