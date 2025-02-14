@@ -42,7 +42,7 @@ let guestCount = 1;
 function attachRemoveEvent(removeIcon, guestDiv) {
   removeIcon.addEventListener("click", () => {
     // Only remove if there's more than one guest form present
-    if (guestsContainer.querySelectorAll(".removable").length > 1) {
+    if (guestsContainer.querySelectorAll(".removable").length > 0) {
       guestsContainer.removeChild(guestDiv);
     }
   });
