@@ -475,3 +475,10 @@ label.child-label {
   }
 }
 
+.pink-subtitle {
+  color: #FCB2A9; /* Pink color used in timeline h3 */
+  font-family: 'Playfair Display', serif; /* Same font as your headings */
+  font-size: 1.25rem; /* Adjust as you see fit */
+  margin-bottom: 0.5rem;
+  display: inline-block; /* or block, as you prefer */
+}
