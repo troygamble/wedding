@@ -22,7 +22,6 @@
     .hidden {
       display: none !important;
     }
-    /* Make our swap containers for replaced images a decent size if needed */
     .video-placeholder {
       text-align: center;
       margin: 1rem 0;
@@ -61,7 +60,6 @@
   </header>
 
   <!-- VIDEO CONTAINER FOR HERO (initially hidden) -->
-  <!-- We'll create a placeholder that the YouTube Player API will use -->
   <div id="heroVideoContainer" class="hidden video-placeholder">
     <div id="heroVideo"></div> <!-- The API will insert an <iframe> here -->
   </div>
@@ -84,7 +82,6 @@
   <section class="split-section" id="details">
     <div class="container split-container">
       <div class="image-side">
-        <!-- We'll replace this <img> with a YT player. So let's wrap it in a container. -->
         <div id="detailsImageContainer">
           <img src="Images/3.jpg" alt="Wedding Venue" loading="lazy" />
         </div>
@@ -140,7 +137,6 @@
         </div>
       </div>
       <div class="image-side">
-        <!-- We'll replace this with a YT player too -->
         <div id="itineraryImageContainer">
           <img src="Images/m1.jpg" alt="Itinerary Image" loading="lazy" />
         </div>
@@ -185,7 +181,6 @@
       </div>
 
       <div class="image-side">
-        <!-- We'll replace this map iframe with a YT player -->
         <div id="mapContainer">
           <iframe
             src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&zoom=15&maptype=satellite&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ"
@@ -201,7 +196,6 @@
   <section class="split-section section-alt" id="accommodation">
     <div class="container split-container reverse">
       <div class="image-side">
-        <!-- We'll replace this image with a YT player -->
         <div id="accommodationImageContainer">
           <img src="Images/m3.jpg" alt="Accommodation Photo" loading="lazy" />
         </div>
@@ -424,19 +418,18 @@
 
     // This function runs automatically once the IFrame Player API is ready
     function onYouTubeIframeAPIReady() {
-      // We'll create each player, but won't show them until 8s pass
-      // 1) Hero video, starts muted so it can autoplay
+      // Create each player. They start with autoplay disabled and muted so that
+      // we can manually start them after 8 seconds without the browser blocking them.
       heroPlayer = new YT.Player('heroVideo', {
         height: '315',
         width: '560',
         videoId: 'mPBzujm-cF8',
         playerVars: {
-          autoplay: 0, // We'll start it manually at 8s
-          mute: 1      // MUST start muted or browsers will block autoplay
+          autoplay: 0,
+          mute: 1
         }
       });
 
-      // 2) Wedding Details image replacement
       detailsPlayer = new YT.Player('detailsImageContainer', {
         height: '315',
         width: '560',
@@ -447,7 +440,6 @@
         }
       });
 
-      // 3) Itinerary image replacement
       itineraryPlayer = new YT.Player('itineraryImageContainer', {
         height: '315',
         width: '560',
@@ -458,7 +450,6 @@
         }
       });
 
-      // 4) Accommodation image replacement
       accommodationPlayer = new YT.Player('accommodationImageContainer', {
         height: '315',
         width: '560',
@@ -469,7 +460,6 @@
         }
       });
 
-      // 5) Map replacement
       mapPlayer = new YT.Player('mapContainer', {
         height: '315',
         width: '560',
@@ -482,33 +472,40 @@
     }
   </script>
 
-  <!-- AFTER 8 SECONDS: Hide Hero, Show Hero Video, Start Each Player, Attempt Unmute -->
+  <!-- AFTER 8 SECONDS: Hide Hero, Show Hero Video, Start Each Player, Attempt Unmute & Replay -->
   <script>
     setTimeout(() => {
-      // Hide hero, show hero's video container
+      // 1) Hide the hero, show hero's video container
       const hero = document.getElementById('hero');
       const heroVideoContainer = document.getElementById('heroVideoContainer');
       if (hero) hero.classList.add('hidden');
       if (heroVideoContainer) heroVideoContainer.classList.remove('hidden');
 
-      // Start playing all 5 players muted
-      // If the players aren't ready yet, this call does nothing until they're ready.
+      // 2) Start playing all 5 players (muted).
       if (heroPlayer) heroPlayer.playVideo();
       if (detailsPlayer) detailsPlayer.playVideo();
       if (itineraryPlayer) itineraryPlayer.playVideo();
       if (accommodationPlayer) accommodationPlayer.playVideo();
       if (mapPlayer) mapPlayer.playVideo();
 
-      // Attempt to unmute after 2 seconds
+      // 3) Attempt to unmute & replay after 2 seconds
       setTimeout(() => {
-        if (heroPlayer) heroPlayer.unMute();
-        if (detailsPlayer) detailsPlayer.unMute();
-        if (itineraryPlayer) itineraryPlayer.unMute();
-        if (accommodationPlayer) accommodationPlayer.unMute();
-        if (mapPlayer) mapPlayer.unMute();
-        // Many browsers will still block audio if there's no user gesture
+        function unmuteAndReplay(player) {
+          if (!player) return;
+          player.unMute();      // Attempt to unmute
+          player.playVideo();   // Attempt to resume or start playing unmuted
+        }
+        unmuteAndReplay(heroPlayer);
+        unmuteAndReplay(detailsPlayer);
+        unmuteAndReplay(itineraryPlayer);
+        unmuteAndReplay(accommodationPlayer);
+        unmuteAndReplay(mapPlayer);
+
+        // Note: If the browser blocks unmuted playback, these calls won't override that.
+        // A user gesture (click/tap) is typically required for guaranteed audio.
       }, 2000);
-    }, 8000); // 8 seconds
+
+    }, 8000); // Wait 8 seconds before the entire swap
   </script>
 </body>
 </html>
