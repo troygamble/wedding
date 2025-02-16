@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Redirecting...</title>
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+      .center {
+        max-width: 600px;
+        margin: 2rem auto;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="center">
+      <h1>Redirecting...</h1>
+      <p>If nothing happens, please go to <a href="https://troyandbec.com">troyandbec.com</a>.</p>
+    </div>
+
+    <script>
+      /*
+        This slugMap converts a short, "pretty" path (e.g. "/sheilah-rodney")
+        into the correct ?guest= param for your single-page invite.
+
+        When someone visits "https://troyandbec.com/sheilah-rodney",
+        GitHub Pages doesn't find a matching file => triggers 404.html => 
+        JavaScript reads the path, looks up the slug, and redirects to "/?guest=...".
+      */
+      const slugMap = {
+        "amanda-christopher": "Amanda%20and%20Christopher",
+        "taylor": "Taylor",
+        "sheilah-rodney": "Sheilah%20and%20Rodney",
+        "vanessa-clint-maddy-william": "Vanessa%2C%20Clint%2C%20Maddy%20and%20William",
+        "alison-ryan": "Alison%20and%20Ryan",
+        "bhav": "Bhav",
+        "dani-russ-bodhi-lyla": "Dani%2C%20Russ%2C%20Bodhi%20and%20Lyla",
+        "lesley-steve": "Lesley%20and%20Steve",
+        "shirley-craig": "Shirley%20and%20Craig",
+        "tabs-huma": "Tabs%20and%20Huma",
+        "lisa-joe-ellis-clara": "Lisa%2C%20Joe%2C%20Ellis%20and%20Clara",
+        "gem-harry-tilly": "Gem%2C%20Harry%20and%20Tilly",
+        "charlotte-barnaby": "Charlotte%20and%20Barnaby",
+        "monica-charbel": "Monica%20and%20Charbel",
+        "brid": "Brid",
+        "pat-bruce": "Pat%20and%20Bruce",
+        "tina-gary": "Tina%20and%20Gary",
+        "lauren-dom-hermione-florence": "Lauren%2C%20Dom%2C%20Hermione%20and%20Florence",
+        "hannah-adam": "Hannah%20and%20Adam",
+        "elspeth-daniel-teddy-emmy-ella": "Elspeth%2C%20Daniel%2C%20Teddy%2C%20Emmy%20and%20Ella",
+        "nic-dave-olivia-francesca": "Nic%2C%20Dave%2C%20Olivia%20and%20Francesca",
+        "laure-lee-leo-amelia": "Laure%2C%20Lee%2C%20Leo%20and%20Amelia",
+        "steph-ryan": "Steph%20and%20Ryan",
+        "rach-issac": "Rach%20And%20Issac",
+        "dan-emma": "Dan%20and%20Emma",
+        "carly": "Carly"
+      };
+
+      // Grab the path from the current URL. e.g. "/sheilah-rodney"
+      let path = window.location.pathname.toLowerCase(); 
+      // Remove leading and trailing slashes ("/") if present
+      path = path.replace(/^\/|\/$/g, "");
+
+      // If there's a matching slug, redirect. Otherwise do nothing or show an error.
+      if (slugMap[path]) {
+        const newLocation = `/?guest=${slugMap[path]}`;
+        window.location.replace(newLocation);
+      } else {
+        // Optionally redirect to homepage or show a 404 message
+        // window.location.replace("/");
+      }
+    </script>
+  </body>
+</html>
