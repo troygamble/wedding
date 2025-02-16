@@ -17,7 +17,7 @@
     rel="stylesheet"
   />
 
-  <!-- Minimal inline CSS for new behaviors (optional) -->
+  <!-- Minimal inline CSS (optional) -->
   <style>
     .hidden {
       display: none !important;
@@ -43,7 +43,6 @@
     }
 
     .hero-overlay {
-      /* If you want a tinted overlay on the video, you can still use this. */
       position: absolute;
       top: 0;
       left: 0;
@@ -60,9 +59,51 @@
       text-align: center;
       color: #fff; /* ensure text is visible over video */
     }
+
+    /* Modal overlay styling */
+    #soundModal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999; /* On top of everything */
+    }
+
+    #soundModalContent {
+      background-color: #fff;
+      padding: 2rem;
+      text-align: center;
+      border-radius: 6px;
+      max-width: 400px;
+    }
+
+    #soundModal button {
+      margin-top: 1rem;
+      padding: 0.7rem 1.2rem;
+      cursor: pointer;
+      border: none;
+      border-radius: 4px;
+      font-size: 1.1rem;
+      background-color: #007bff;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+
+  <!-- SINGLE-BUTTON MODAL (FORCED CLICK) -->
+  <div id="soundModal">
+    <div id="soundModalContent">
+      <h2>Welcome!</h2>
+      <p>Please click below to play the video with sound.</p>
+      <button id="startAudioBtn">Play Video</button>
+    </div>
+  </div>
 
   <!-- HEADER / HERO SECTION -->
   <header class="hero" id="hero">
@@ -445,8 +486,19 @@
   <!-- (Optional) Link to your standard script.js if you have additional code -->
   <script src="script.js"></script>
 
-  <!-- YouTube API and 8-second swap scripts removed. -->
-  <!-- This version uses a locally hosted MP4 video in the hero section. -->
+  <!-- Script for the forced-click Sound Modal -->
+  <script>
+    const soundModal = document.getElementById('soundModal');
+    const heroVideo = document.getElementById('heroVideo');
+    const startAudioBtn = document.getElementById('startAudioBtn');
 
+    // Autoplay is muted by default in HTML. 
+    // The user MUST click the button to unmute.
+    startAudioBtn.addEventListener('click', () => {
+      heroVideo.muted = false;  // unmute
+      heroVideo.play();         // attempt to play with sound
+      soundModal.style.display = 'none'; // hide modal
+    });
+  </script>
 </body>
 </html>
