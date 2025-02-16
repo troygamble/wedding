@@ -26,12 +26,56 @@
       text-align: center;
       margin: 1rem 0;
     }
+
+    /* Example hero video styling */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: auto;
+      overflow: hidden;
+    }
+
+    .hero video {
+      width: 100%;
+      height: auto;
+      object-fit: cover; /* Adjust as desired */
+      display: block;
+    }
+
+    .hero-overlay {
+      /* If you want a tinted overlay on the video, you can still use this. */
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.3); /* Example overlay */
+    }
+
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #fff; /* ensure text is visible over video */
+    }
   </style>
 </head>
 <body>
 
   <!-- HEADER / HERO SECTION -->
   <header class="hero" id="hero">
+    <video 
+      id="heroVideo"
+      autoplay 
+      muted 
+      loop 
+      playsinline
+    >
+      <source src="media/ncd.mp4" type="video/mp4" />
+      Your browser does not support the HTML5 video tag.
+    </video>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <h1 id="heroTitle">Troy &amp; Rebecca</h1>
@@ -58,11 +102,6 @@
       </div>
     </div>
   </header>
-
-  <!-- VIDEO CONTAINER FOR HERO (initially hidden) -->
-  <div id="heroVideoContainer" class="hidden video-placeholder">
-    <div id="heroVideo"></div> <!-- The API will insert an <iframe> here -->
-  </div>
 
   <!-- INTRO SECTION (accent background) -->
   <section class="intro section-alt" id="intro">
@@ -403,109 +442,11 @@
     <p>&copy; 2025 Tamaribuchi Heavy Manufacturing Concern. All Rights Reserved.</p>
   </footer>
 
-  <!-- (Optional) Link to your standard script.js here if you have additional code -->
+  <!-- (Optional) Link to your standard script.js if you have additional code -->
   <script src="script.js"></script>
 
-  <!-- 1) Load the YouTube IFrame Player API code asynchronously -->
-  <script>
-    var tag = document.createElement('script');
-    tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
-    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+  <!-- YouTube API and 8-second swap scripts removed. -->
+  <!-- This version uses a locally hosted MP4 video in the hero section. -->
 
-    // We'll keep references to each YT player so we can attempt unmuting later
-    let heroPlayer, detailsPlayer, itineraryPlayer, accommodationPlayer, mapPlayer;
-
-    // This function runs automatically once the IFrame Player API is ready
-    function onYouTubeIframeAPIReady() {
-      // Create each player. They start with autoplay disabled and muted so that
-      // we can manually start them after 8 seconds without the browser blocking them.
-      heroPlayer = new YT.Player('heroVideo', {
-        height: '315',
-        width: '560',
-        videoId: 'mPBzujm-cF8',
-        playerVars: {
-          autoplay: 0,
-          mute: 1
-        }
-      });
-
-      detailsPlayer = new YT.Player('detailsImageContainer', {
-        height: '315',
-        width: '560',
-        videoId: 'mPBzujm-cF8',
-        playerVars: {
-          autoplay: 0,
-          mute: 1
-        }
-      });
-
-      itineraryPlayer = new YT.Player('itineraryImageContainer', {
-        height: '315',
-        width: '560',
-        videoId: 'mPBzujm-cF8',
-        playerVars: {
-          autoplay: 0,
-          mute: 1
-        }
-      });
-
-      accommodationPlayer = new YT.Player('accommodationImageContainer', {
-        height: '315',
-        width: '560',
-        videoId: 'mPBzujm-cF8',
-        playerVars: {
-          autoplay: 0,
-          mute: 1
-        }
-      });
-
-      mapPlayer = new YT.Player('mapContainer', {
-        height: '315',
-        width: '560',
-        videoId: 'mPBzujm-cF8',
-        playerVars: {
-          autoplay: 0,
-          mute: 1
-        }
-      });
-    }
-  </script>
-
-  <!-- AFTER 8 SECONDS: Hide Hero, Show Hero Video, Start Each Player, Attempt Unmute & Replay -->
-  <script>
-    setTimeout(() => {
-      // 1) Hide the hero, show hero's video container
-      const hero = document.getElementById('hero');
-      const heroVideoContainer = document.getElementById('heroVideoContainer');
-      if (hero) hero.classList.add('hidden');
-      if (heroVideoContainer) heroVideoContainer.classList.remove('hidden');
-
-      // 2) Start playing all 5 players (muted).
-      if (heroPlayer) heroPlayer.playVideo();
-      if (detailsPlayer) detailsPlayer.playVideo();
-      if (itineraryPlayer) itineraryPlayer.playVideo();
-      if (accommodationPlayer) accommodationPlayer.playVideo();
-      if (mapPlayer) mapPlayer.playVideo();
-
-      // 3) Attempt to unmute & replay after 2 seconds
-      setTimeout(() => {
-        function unmuteAndReplay(player) {
-          if (!player) return;
-          player.unMute();      // Attempt to unmute
-          player.playVideo();   // Attempt to resume or start playing unmuted
-        }
-        unmuteAndReplay(heroPlayer);
-        unmuteAndReplay(detailsPlayer);
-        unmuteAndReplay(itineraryPlayer);
-        unmuteAndReplay(accommodationPlayer);
-        unmuteAndReplay(mapPlayer);
-
-        // Note: If the browser blocks unmuted playback, these calls won't override that.
-        // A user gesture (click/tap) is typically required for guaranteed audio.
-      }, 2000);
-
-    }, 8000); // Wait 8 seconds before the entire swap
-  </script>
 </body>
 </html>
