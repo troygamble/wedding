@@ -384,6 +384,8 @@ section.itinerary .text-side h2 {
   border: 1px solid #ccc;
   border-radius: 4px;
   font: inherit;
+  min-height: 180px; /* This is the new line to increase the height */
+  resize: vertical; /* Allows resizing */
 }
 
 .form-group input:focus,
