@@ -454,13 +454,17 @@ label.child-label {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  text-decoration: none; /* Ensure no underline by default */
 }
 
 .btn:hover,
-.btn:focus {
-  background-color: #E39A94; /* Slightly darker shade for hover */
+.btn:focus,
+.btn:visited,
+.btn:active {
+  background-color: #E39A94; /* Slightly darker shade for hover/focus/etc. */
   outline: none;
   box-shadow: 0 0 0 2px rgba(252, 178, 169, 0.5);
+  text-decoration: none; /* Safeguard in all states */
 }
 
 /* ------------------------------------------------------------
