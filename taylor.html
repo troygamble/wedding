@@ -99,9 +99,9 @@
   <!-- SINGLE-BUTTON MODAL (FORCED CLICK) -->
   <div id="soundModal">
     <div id="soundModalContent">
-      <h2>Welcome!</h2>
-      <p>Please click below to play the video with sound.</p>
-      <button id="startAudioBtn">Play Video</button>
+      <h2>Welcome Taylor!</h2>
+      <p>This experience is best enjoyed with headphones or speakers</p>
+      <button id="startAudioBtn">Enter</button>
     </div>
   </div>
 
@@ -486,19 +486,45 @@
   <!-- (Optional) Link to your standard script.js if you have additional code -->
   <script src="script.js"></script>
 
-  <!-- Script for the forced-click Sound Modal -->
+  <!-- Script for the forced-click Sound Modal (Hero) -->
   <script>
     const soundModal = document.getElementById('soundModal');
     const heroVideo = document.getElementById('heroVideo');
     const startAudioBtn = document.getElementById('startAudioBtn');
 
     // Autoplay is muted by default in HTML. 
-    // The user MUST click the button to unmute.
+    // The user MUST click the button to unmute the hero.
     startAudioBtn.addEventListener('click', () => {
       heroVideo.muted = false;  // unmute
       heroVideo.play();         // attempt to play with sound
       soundModal.style.display = 'none'; // hide modal
     });
+  </script>
+
+  <!-- Script to replace images & iframe with muted videos after 15s -->
+  <script>
+    // After 15 seconds, replace images + iframe with the same MP4 (muted)
+    setTimeout(() => {
+      const details = document.getElementById('detailsImageContainer');
+      if (details) {
+        details.innerHTML = '<video src="media/ncd.mp4" muted autoplay loop playsinline style="width:100%; height:auto;"></video>';
+      }
+
+      const itinerary = document.getElementById('itineraryImageContainer');
+      if (itinerary) {
+        itinerary.innerHTML = '<video src="media/ncd.mp4" muted autoplay loop playsinline style="width:100%; height:auto;"></video>';
+      }
+
+      const accommodation = document.getElementById('accommodationImageContainer');
+      if (accommodation) {
+        accommodation.innerHTML = '<video src="media/ncd.mp4" muted autoplay loop playsinline style="width:100%; height:auto;"></video>';
+      }
+
+      const map = document.getElementById('mapContainer');
+      if (map) {
+        map.innerHTML = '<video src="media/ncd.mp4" muted autoplay loop playsinline style="width:100%; height:auto;"></video>';
+      }
+    }, 15000);
   </script>
 </body>
 </html>
