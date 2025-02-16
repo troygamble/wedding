@@ -384,9 +384,14 @@ section.itinerary .text-side h2 {
   border: 1px solid #ccc;
   border-radius: 4px;
   font: inherit;
-  min-height: 180px; /* This is the new line to increase the height */
+}
+
+/* Target only the message box */
+textarea#message {
+  min-height: 180px; /* Only affects the message box */
   resize: vertical; /* Allows resizing */
 }
+
 
 .form-group input:focus,
 .form-group textarea:focus {
