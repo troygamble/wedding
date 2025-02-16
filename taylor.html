@@ -17,7 +17,7 @@
     rel="stylesheet"
   />
 
-  <!-- Add a quick .hidden class if not already in style.css -->
+  <!-- A quick .hidden class if not already in style.css -->
   <style>
     .hidden {
       display: none !important;
@@ -27,7 +27,6 @@
 <body>
 
   <!-- HEADER / HERO SECTION -->
-  <!-- Assign an ID for easy toggling via JavaScript -->
   <header class="hero" id="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -56,13 +55,13 @@
     </div>
   </header>
 
-  <!-- VIDEO CONTAINER (initially hidden) -->
+  <!-- VIDEO CONTAINER FOR HERO (initially hidden) -->
   <div id="videoContainer" class="hidden" style="text-align:center; margin-top:1rem;">
-    <!-- Autoplay + Mute increases the chance of autoplay working in most browsers -->
+    <!-- Autoplay, unmuted (no mute=1) -->
     <iframe
       width="560"
       height="315"
-      src="https://www.youtube.com/embed/mPBzujm-cF8?autoplay=1&mute=1"
+      src="https://www.youtube.com/embed/mPBzujm-cF8?autoplay=1"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -92,18 +91,10 @@
       </div>
       <div class="text-side">
         <h2>Wedding Details</h2>
-        <p>
-          <strong>Date:</strong> Wednesday, 10th September 2025
-        </p>
-        <p>
-          <strong>Time:</strong> 4:00 PM (local Bali time)
-        </p>
-        <p>
-          <strong>Location:</strong> Merusaka, Nusa Dua, Bali
-        </p>
-        <p>
-          <strong>Attire:</strong> Beach formal—light, breezy, and comfortable.
-        </p>
+        <p><strong>Date:</strong> Wednesday, 10th September 2025</p>
+        <p><strong>Time:</strong> 4:00 PM (local Bali time)</p>
+        <p><strong>Location:</strong> Merusaka, Nusa Dua, Bali</p>
+        <p><strong>Attire:</strong> Beach formal—light, breezy, and comfortable.</p>
         <p>
           <strong>RSVP:</strong> We would love you to RSVP as soon as you can.
           Please use the form at the bottom of the invitation.
@@ -165,15 +156,21 @@
           to the wedding venue.
         </p>
         <ul>
-          <li><strong>Distance:</strong> Merusaka Nusa Dua is about <strong>14 km</strong> from the airport.</li>
-          <li><strong>Travel Time:</strong> Around <strong>25-30 minutes</strong> by car, depending on traffic.</li>
+          <li>
+            <strong>Distance:</strong> Merusaka Nusa Dua is about 
+            <strong>14 km</strong> from the airport.
+          </li>
+          <li>
+            <strong>Travel Time:</strong> Around <strong>25-30 minutes</strong> 
+            by car, depending on traffic.
+          </li>
         </ul>
 
         <p><strong>Transport Options:</strong></p>
         <ul>
           <li>
-            <strong>Taxi / Ride-Share:</strong> Use a <em>Bluebird taxi</em> or book 
-            a ride via <em>Grab/Gojek</em> (IDR 150,000 – 250,000 / ~$20 AUD).
+            <strong>Taxi / Ride-Share:</strong> Use a <em>Bluebird taxi</em> or 
+            book a ride via <em>Grab/Gojek</em> (IDR 150,000 – 250,000 / ~$20 AUD).
           </li>
           <li>
             <strong>Hotel Transfer:</strong> Contact Merusaka for a private pickup service.
@@ -189,8 +186,8 @@
           <iframe
             src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&zoom=15&maptype=satellite&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ"
             allowfullscreen
-            loading="lazy">
-          </iframe>
+            loading="lazy"
+          ></iframe>
         </div>
       </div>
     </div>
@@ -232,7 +229,9 @@
           +62 361 200 2900<br />
         </p>
 
-        <p>If you have any issues using the discount code, please let us know.</p>
+        <p>
+          If you have any issues using the discount code, please let us know.
+        </p>
       </div>
     </div>
   </section>
@@ -262,7 +261,8 @@
         <div class="faq-answer">
           <p>
             We’re going for <strong>“beach formal”</strong>—light, breezy, and 
-            comfortable. Think summery colors and fabrics that work well in warm weather.
+            comfortable. Think summery colors and fabrics that work well in 
+            warm weather.
           </p>
         </div>
       </div>
@@ -273,7 +273,8 @@
         </button>
         <div class="faq-answer">
           <p>
-            We would love to know if you can make it as soon as possible. Please let us know via the form at the bottom of the page.
+            We would love to know if you can make it as soon as possible. Please 
+            let us know via the form at the bottom of the page.
           </p>
         </div>
       </div>
@@ -404,16 +405,43 @@
   <!-- JavaScript -->
   <script src="script.js"></script>
 
-  <!-- After 8 seconds, hide the hero and show the autoplay video -->
+  <!-- AFTER 8 SECONDS, Hide Hero, Show Hero Video, Replace Specific Images/Map -->
   <script>
     setTimeout(() => {
+      // 1) Hide the hero, show the hero's video
       const hero = document.getElementById('hero');
       const videoContainer = document.getElementById('videoContainer');
+      if (hero) hero.classList.add('hidden');
+      if (videoContainer) videoContainer.classList.remove('hidden');
 
-      if (hero && videoContainer) {
-        hero.classList.add('hidden');           // Hide the hero section
-        videoContainer.classList.remove('hidden'); // Show the video iframe
+      // 2) Replace the images in "Wedding Details", "Itinerary", "Accommodation",
+      //    and the map iframe in "Getting There" with an unmuted YouTube embed:
+      const detailsImg = document.querySelector('#details .image-side img');
+      const itineraryImg = document.querySelector('#itinerary .image-side img');
+      const accommodationImg = document.querySelector('#accommodation .image-side img');
+      const gettingThereMap = document.querySelector('#gettingThere .map-container iframe');
+
+      // Helper function to create an unmuted YouTube embed
+      function createUnmutedVideoIframe() {
+        const iframe = document.createElement('iframe');
+        // unmuted => ?autoplay=1 with no mute=1
+        iframe.src = 'https://www.youtube.com/embed/mPBzujm-cF8?autoplay=1';
+        iframe.width = '560';
+        iframe.height = '315';
+        iframe.frameBorder = '0';
+        iframe.allowFullscreen = true;
+        iframe.allow =
+          'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+        return iframe;
       }
+
+      const elementsToReplace = [detailsImg, itineraryImg, accommodationImg, gettingThereMap];
+      elementsToReplace.forEach(elem => {
+        if (elem) {
+          const newIframe = createUnmutedVideoIframe();
+          elem.parentNode.replaceChild(newIframe, elem);
+        }
+      });
     }, 8000);
   </script>
 </body>
