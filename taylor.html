@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Troy & Rebecca's Wedding</title>
 
-  <!-- Link to external CSS -->
+  <!-- Link to your normal CSS (if you want the same styling) -->
   <link rel="stylesheet" href="style.css" />
 
   <!-- Google Fonts -->
@@ -17,10 +17,15 @@
     rel="stylesheet"
   />
 
-  <!-- A quick .hidden class if not already in style.css -->
+  <!-- Minimal inline CSS for new behaviors (optional) -->
   <style>
     .hidden {
       display: none !important;
+    }
+    /* Make our swap containers for replaced images a decent size if needed */
+    .video-placeholder {
+      text-align: center;
+      margin: 1rem 0;
     }
   </style>
 </head>
@@ -56,17 +61,9 @@
   </header>
 
   <!-- VIDEO CONTAINER FOR HERO (initially hidden) -->
-  <div id="videoContainer" class="hidden" style="text-align:center; margin-top:1rem;">
-    <!-- Autoplay, unmuted (no mute=1) -->
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/mPBzujm-cF8?autoplay=1"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen
-    ></iframe>
+  <!-- We'll create a placeholder that the YouTube Player API will use -->
+  <div id="heroVideoContainer" class="hidden video-placeholder">
+    <div id="heroVideo"></div> <!-- The API will insert an <iframe> here -->
   </div>
 
   <!-- INTRO SECTION (accent background) -->
@@ -87,7 +84,10 @@
   <section class="split-section" id="details">
     <div class="container split-container">
       <div class="image-side">
-        <img src="Images/3.jpg" alt="Wedding Venue" loading="lazy" />
+        <!-- We'll replace this <img> with a YT player. So let's wrap it in a container. -->
+        <div id="detailsImageContainer">
+          <img src="Images/3.jpg" alt="Wedding Venue" loading="lazy" />
+        </div>
       </div>
       <div class="text-side">
         <h2>Wedding Details</h2>
@@ -140,7 +140,10 @@
         </div>
       </div>
       <div class="image-side">
-        <img src="Images/m1.jpg" alt="Itinerary Image" loading="lazy" />
+        <!-- We'll replace this with a YT player too -->
+        <div id="itineraryImageContainer">
+          <img src="Images/m1.jpg" alt="Itinerary Image" loading="lazy" />
+        </div>
       </div>
     </div>
   </section>
@@ -182,7 +185,8 @@
       </div>
 
       <div class="image-side">
-        <div class="map-container">
+        <!-- We'll replace this map iframe with a YT player -->
+        <div id="mapContainer">
           <iframe
             src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJn1KMyC5D0i0RIJ7jnsLTJ1w&zoom=15&maptype=satellite&key=AIzaSyAsYVu2tJJWhieFkiJpk6_7RjDFq6N3HsQ"
             allowfullscreen
@@ -197,7 +201,10 @@
   <section class="split-section section-alt" id="accommodation">
     <div class="container split-container reverse">
       <div class="image-side">
-        <img src="Images/m3.jpg" alt="Accommodation Photo" loading="lazy" />
+        <!-- We'll replace this image with a YT player -->
+        <div id="accommodationImageContainer">
+          <img src="Images/m3.jpg" alt="Accommodation Photo" loading="lazy" />
+        </div>
       </div>
       <div class="text-side">
         <h2>Accommodation</h2>
@@ -402,47 +409,106 @@
     <p>&copy; 2025 Tamaribuchi Heavy Manufacturing Concern. All Rights Reserved.</p>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- (Optional) Link to your standard script.js here if you have additional code -->
   <script src="script.js"></script>
 
-  <!-- AFTER 8 SECONDS, Hide Hero, Show Hero Video, Replace Specific Images/Map -->
+  <!-- 1) Load the YouTube IFrame Player API code asynchronously -->
   <script>
-    setTimeout(() => {
-      // 1) Hide the hero, show the hero's video
-      const hero = document.getElementById('hero');
-      const videoContainer = document.getElementById('videoContainer');
-      if (hero) hero.classList.add('hidden');
-      if (videoContainer) videoContainer.classList.remove('hidden');
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-      // 2) Replace the images in "Wedding Details", "Itinerary", "Accommodation",
-      //    and the map iframe in "Getting There" with an unmuted YouTube embed:
-      const detailsImg = document.querySelector('#details .image-side img');
-      const itineraryImg = document.querySelector('#itinerary .image-side img');
-      const accommodationImg = document.querySelector('#accommodation .image-side img');
-      const gettingThereMap = document.querySelector('#gettingThere .map-container iframe');
+    // We'll keep references to each YT player so we can attempt unmuting later
+    let heroPlayer, detailsPlayer, itineraryPlayer, accommodationPlayer, mapPlayer;
 
-      // Helper function to create an unmuted YouTube embed
-      function createUnmutedVideoIframe() {
-        const iframe = document.createElement('iframe');
-        // unmuted => ?autoplay=1 with no mute=1
-        iframe.src = 'https://www.youtube.com/embed/mPBzujm-cF8?autoplay=1';
-        iframe.width = '560';
-        iframe.height = '315';
-        iframe.frameBorder = '0';
-        iframe.allowFullscreen = true;
-        iframe.allow =
-          'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-        return iframe;
-      }
-
-      const elementsToReplace = [detailsImg, itineraryImg, accommodationImg, gettingThereMap];
-      elementsToReplace.forEach(elem => {
-        if (elem) {
-          const newIframe = createUnmutedVideoIframe();
-          elem.parentNode.replaceChild(newIframe, elem);
+    // This function runs automatically once the IFrame Player API is ready
+    function onYouTubeIframeAPIReady() {
+      // We'll create each player, but won't show them until 8s pass
+      // 1) Hero video, starts muted so it can autoplay
+      heroPlayer = new YT.Player('heroVideo', {
+        height: '315',
+        width: '560',
+        videoId: 'mPBzujm-cF8',
+        playerVars: {
+          autoplay: 0, // We'll start it manually at 8s
+          mute: 1      // MUST start muted or browsers will block autoplay
         }
       });
-    }, 8000);
+
+      // 2) Wedding Details image replacement
+      detailsPlayer = new YT.Player('detailsImageContainer', {
+        height: '315',
+        width: '560',
+        videoId: 'mPBzujm-cF8',
+        playerVars: {
+          autoplay: 0,
+          mute: 1
+        }
+      });
+
+      // 3) Itinerary image replacement
+      itineraryPlayer = new YT.Player('itineraryImageContainer', {
+        height: '315',
+        width: '560',
+        videoId: 'mPBzujm-cF8',
+        playerVars: {
+          autoplay: 0,
+          mute: 1
+        }
+      });
+
+      // 4) Accommodation image replacement
+      accommodationPlayer = new YT.Player('accommodationImageContainer', {
+        height: '315',
+        width: '560',
+        videoId: 'mPBzujm-cF8',
+        playerVars: {
+          autoplay: 0,
+          mute: 1
+        }
+      });
+
+      // 5) Map replacement
+      mapPlayer = new YT.Player('mapContainer', {
+        height: '315',
+        width: '560',
+        videoId: 'mPBzujm-cF8',
+        playerVars: {
+          autoplay: 0,
+          mute: 1
+        }
+      });
+    }
+  </script>
+
+  <!-- AFTER 8 SECONDS: Hide Hero, Show Hero Video, Start Each Player, Attempt Unmute -->
+  <script>
+    setTimeout(() => {
+      // Hide hero, show hero's video container
+      const hero = document.getElementById('hero');
+      const heroVideoContainer = document.getElementById('heroVideoContainer');
+      if (hero) hero.classList.add('hidden');
+      if (heroVideoContainer) heroVideoContainer.classList.remove('hidden');
+
+      // Start playing all 5 players muted
+      // If the players aren't ready yet, this call does nothing until they're ready.
+      if (heroPlayer) heroPlayer.playVideo();
+      if (detailsPlayer) detailsPlayer.playVideo();
+      if (itineraryPlayer) itineraryPlayer.playVideo();
+      if (accommodationPlayer) accommodationPlayer.playVideo();
+      if (mapPlayer) mapPlayer.playVideo();
+
+      // Attempt to unmute after 2 seconds
+      setTimeout(() => {
+        if (heroPlayer) heroPlayer.unMute();
+        if (detailsPlayer) detailsPlayer.unMute();
+        if (itineraryPlayer) itineraryPlayer.unMute();
+        if (accommodationPlayer) accommodationPlayer.unMute();
+        if (mapPlayer) mapPlayer.unMute();
+        // Many browsers will still block audio if there's no user gesture
+      }, 2000);
+    }, 8000); // 8 seconds
   </script>
 </body>
 </html>
